@@ -7,7 +7,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Data Visualization',
+      title: 'Chart View',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
