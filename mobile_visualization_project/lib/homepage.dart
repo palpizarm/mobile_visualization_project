@@ -15,18 +15,34 @@ class _HomePageState extends State<HomePage> {
     return MaterialApp(
         home: DefaultTabController(
           length: 3,
-          child: AppBar(
-            backgroundColor: Color(0xff1976d2),
+          child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Color(0xff0b906c),
             bottom: TabBar(
-              indicatorColor: Color(0xffcf1319),
+              indicatorColor: Color(0xff086306),
               tabs: [
-                Tab(icon: Icon(FontAwesomeIcons.chartLine),),
-                Tab(icon: Icon(FontAwesomeIcons.solidChartBar),),
+                Tab(icon: Icon(Icons.bubble_chart,color: Color(0xffffffff),size: 36.0),),
+                Tab(icon: Icon(Icons.pie_chart,color: Color(0xffffffff),size: 36.0),),
+                Tab(icon: Icon(Icons.insert_chart,color: Color(0xffffffff),size: 36.0),),
               ],
             ),
             title: Text("Población con discapacidad en Costa Rica"),
           ),
+            body: TabBarView(
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                ),
+              ]
+            ),
         )
+    )
     );
   }
 }
