@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mobile_visualization_project/bar.dart';
 
 class HomePage extends StatefulWidget {
   final Widget child;
@@ -38,6 +39,11 @@ class _HomePageState extends State<HomePage> {
                 ),
                 Padding(
                   padding: EdgeInsets.all(8.0),
+                  child: Container(
+                    child: Center(
+                      child: BarChart(),
+                    ),
+                  ),
                 ),
               ]
             ),
