@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'bubble.dart';
 
 class HomePage extends StatefulWidget {
   final Widget child;
@@ -32,6 +32,11 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Padding(
                   padding: EdgeInsets.all(8.0),
+                  child: Container (
+                    child: Center(
+                      child: BubbleChart(),
+                    )
+                  )
                 ),
                 Padding(
                   padding: EdgeInsets.all(8.0),
