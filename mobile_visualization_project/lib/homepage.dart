@@ -14,7 +14,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return MaterialApp(
         home: DefaultTabController(
-          length: 3,
+          length: 2,
           child: AppBar(
             backgroundColor: Color(0xff1976d2),
             bottom: TabBar(
