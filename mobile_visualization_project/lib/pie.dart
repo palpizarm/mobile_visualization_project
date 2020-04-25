@@ -16,26 +16,39 @@ class PieChart extends StatelessWidget {
     return new charts.PieChart(
       seriesList,
       animate: true,
-        defaultRenderer: new charts.ArcRendererConfig(arcRendererDecorators: [
-          new charts.ArcLabelDecorator(
-              labelPosition: charts.ArcLabelPosition.outside)
-        ])
+      behaviors: [
+      new charts.DatumLegend(
+        position: charts.BehaviorPosition.top,
+        horizontalFirst: false,
+    showMeasures: true,
+    // Configure the measure value to be shown by default in the legend.
+    legendDefaultMeasure: charts.LegendDefaultMeasure.firstValue,
+    // Optionally provide a measure formatter to format the measure value.
+    // If none is specified the value is formatted as a decimal.
+    measureFormatter: (num value) {
+      return value == null ? '-' : '${value}';
+    }
+        )
+      ],
     );
   }
 
   List<charts.Series<DisabilitiesByProvince, String>> _createData() {
-    List<DisabilitiesByProvince> provinces = [];
-    int index = 0;
-    for (int quantity in _dataHandler.disabilitiesByProvince['San Jose']) {
-        provinces.add(new DisabilitiesByProvince(_dataHandler.disabilities[index],quantity));
-        index++;
+    List<DisabilitiesByProvince>  disabilitiesSeries= [];
+    String key = "";
+    for (int index = 0; index < _dataHandler.disabilities.length; index++) {
+      int quantity  = 0;
+      for (key in _dataHandler.disabilitiesByProvince.keys) {
+        quantity += _dataHandler.disabilitiesByProvince[key][index];
+      }
+      disabilitiesSeries.add(new DisabilitiesByProvince(_dataHandler.disabilities[index], quantity));
     }
     return [
       new charts.Series<DisabilitiesByProvince, String>(
-          id: _dataHandler.disabilities[0],
+          id: 'data',
           domainFn: (DisabilitiesByProvince disabilities, _) => disabilities.disability,
           measureFn: (DisabilitiesByProvince disabilities, _) => disabilities.quantity,
-          data: provinces),
+          data: disabilitiesSeries),
     ];
   }
 }
