@@ -13,23 +13,39 @@ class PieChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new charts.PieChart(
-      seriesList,
-      animate: true,
-      behaviors: [
-      new charts.DatumLegend(
-        position: charts.BehaviorPosition.top,
-        horizontalFirst: false,
-    showMeasures: true,
-    // Configure the measure value to be shown by default in the legend.
-    legendDefaultMeasure: charts.LegendDefaultMeasure.firstValue,
-    // Optionally provide a measure formatter to format the measure value.
-    // If none is specified the value is formatted as a decimal.
-    measureFormatter: (num value) {
-      return value == null ? '-' : '${value}';
-    }
-        )
-      ],
+    return Center(
+      child: Column(
+        children: <Widget>[
+          Text(
+            'Total de personas con discapacidad segun tipo discapacidad',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            ),
+          ),
+          Expanded(
+            child: new charts.PieChart(
+              seriesList,
+              animate: true,
+              behaviors: [
+                new charts.DatumLegend(
+                    position: charts.BehaviorPosition.top,
+                    horizontalFirst: false,
+                    showMeasures: true,
+                    // Configure the measure value to be shown by default in the legend.
+                    legendDefaultMeasure: charts.LegendDefaultMeasure
+                        .firstValue,
+                    // Optionally provide a measure formatter to format the measure value.
+                    // If none is specified the value is formatted as a decimal.
+                    measureFormatter: (num value) {
+                      return value == null ? '-' : '${value}';
+                    }
+                )
+              ],),
+          )
+        ],
+      ),
     );
   }
 

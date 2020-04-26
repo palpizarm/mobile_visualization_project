@@ -37,10 +37,8 @@ class _HomePageState extends State<HomePage> {
                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Container(
-                      child: Center(
-                        child: PieChart(),
+                    child: PieChart(),
                       )
-                  )
                 ),
                 Padding(
                   padding: EdgeInsets.all(8.0),
