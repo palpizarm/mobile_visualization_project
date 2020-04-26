@@ -33,11 +33,9 @@ class _HomePageState extends State<HomePage> {
                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Container (
-                    child: Center(
-                      child: BubbleChart(),
+                    child: BubbleChart(),
                     )
-                  )
-                ),
+                  ),
                 Padding(
                   padding: EdgeInsets.all(8.0),
                 ),

@@ -1,102 +1,133 @@
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
 import 'dataHandler.dart';
+import 'package:bubble_chart/bubble_chart.dart';
 
 class BubbleChart extends StatelessWidget {
-  List<charts.Series> seriesList;
-  DataHandler data;
+  List<DisabilityByAge> maleSeries;
+  List<DisabilityByAge> femaleSeries;
+  BubbleNode bubbleChart;
+  DataHandler _data;
 
-  BubbleChart(){
-    seriesList = _createSeriesChart();
-    data = new DataHandler();
+  BubbleChart() {
+    bubbleChart = null;
+    _data = new DataHandler();
+    maleSeries = [];
+    femaleSeries = [];
+    _loadData();
+    _createData();
   }
 
 
   @override
   Widget build(BuildContext context) {
-    return new charts.ScatterPlotChart(seriesList,
-        animate: true,
-        behaviors: [
-          new charts.SeriesLegend(
-            outsideJustification: charts.OutsideJustification.endDrawArea,
-            horizontalFirst: false,
-            desiredMaxRows: 2,
-            cellPadding: new EdgeInsets.only(right: 4.0, bottom: 4.0),
-            entryTextStyle: charts.TextStyleSpec(
-                color: charts.MaterialPalette.purple.shadeDefault,
-                fontFamily: 'Georgia',
-                fontSize: 11),
-          )
-        ]);
+    return Column(
+      children: <Widget>[
+        Text(
+          'Cantidad de personas con discapacidad por genero',
+        ),
+        Expanded(
+          child: BubbleChartLayout(
+            root: bubbleChart,
+          ),
+        )
+      ],
+    );
   }
 
-  List<charts.Series<LinearSales, int>> _createSeriesChart() {
-    List<charts.Series> series = [];
-    for (int index = 0; index < data.disabilities.length; index++) {
-      series.add(new charts.Series<String,int>(
-      id:data.disabilities[index],
-      colorFn: (String string,_) => charts.MaterialPalette.blue.shadeDefault,
-      domainFn: (String string, _) => data.
-      ));
+  void _loadData() {
+    int maleQuantity = 0;
+    int femaleQuantity = 0;
+    for (int index = 0; index < _data.disabilities.length; index++) {
+      for (String key in _data.maleDisabilitiesByAge.keys) {
+        maleQuantity += _data.maleDisabilitiesByAge[key][index];
+        femaleQuantity += _data.femaleDisabilitiesByAge[key][index];
+      }
+      maleSeries.add(
+          new DisabilityByAge(_data.disabilities[index], maleQuantity));
+      femaleSeries.add(
+          new DisabilityByAge(_data.disabilities[index], femaleQuantity));
+      maleQuantity = femaleQuantity = 0;
     }
-    return [
-      new charts.Series<LinearSales, int>(
-          id: 'Desktop',
-          colorFn: (LinearSales sales, _) =>
-          charts.MaterialPalette.blue.shadeDefault,
-          domainFn: (LinearSales sales, _) => sales.year,
-          measureFn: (LinearSales sales, _) => sales.revenueShare,
-          radiusPxFn: (LinearSales sales, _) => sales.radius,
-          data: myFakeDesktopData),
-      new charts.Series<LinearSales, int>(
-          id: 'Tablet',
-          colorFn: (LinearSales sales, _) =>
-          charts.MaterialPalette.red.shadeDefault,
-          domainFn: (LinearSales sales, _) => sales.year,
-          measureFn: (LinearSales sales, _) => sales.revenueShare,
-          radiusPxFn: (LinearSales sales, _) => sales.radius,
-          data: myFakeTabletData),
-      new charts.Series<LinearSales, int>(
-          id: 'Mobile',
-          colorFn: (LinearSales sales, _) =>
-          charts.MaterialPalette.green.shadeDefault,
-          domainFn: (LinearSales sales, _) => sales.year,
-          measureFn: (LinearSales sales, _) => sales.revenueShare,
-          radiusPxFn: (LinearSales sales, _) => sales.radius,
-          data: myFakeMobileData),
-      new charts.Series<LinearSales, int>(
-          id: 'Chromebook',
-          colorFn: (LinearSales sales, _) =>
-          charts.MaterialPalette.purple.shadeDefault,
-          domainFn: (LinearSales sales, _) => sales.year,
-          measureFn: (LinearSales sales, _) => sales.revenueShare,
-          radiusPxFn: (LinearSales sales, _) => sales.radius,
-          data: myFakeChromebook),
-      new charts.Series<LinearSales, int>(
-          id: 'Home',
-          colorFn: (LinearSales sales, _) =>
-          charts.MaterialPalette.indigo.shadeDefault,
-          domainFn: (LinearSales sales, _) => sales.year,
-          measureFn: (LinearSales sales, _) => sales.revenueShare,
-          radiusPxFn: (LinearSales sales, _) => sales.radius,
-          data: myFakeHomeData),
-      new charts.Series<LinearSales, int>(
-          id: 'Other',
-          colorFn: (LinearSales sales, _) =>
-          charts.MaterialPalette.gray.shadeDefault,
-          domainFn: (LinearSales sales, _) => sales.year,
-          measureFn: (LinearSales sales, _) => sales.revenueShare,
-          radiusPxFn: (LinearSales sales, _) => sales.radius,
-          data: myFakeOtherData),
-    ];
+  }
+
+
+  _createData() {
+    bubbleChart = BubbleNode.node(
+        children: [
+          BubbleNode.leaf(
+              options: BubbleOptions(
+                  color: Colors.lime,
+                  child: Text(
+                    maleSeries[0].disability,
+                    textAlign: TextAlign.center,
+                  ),
+              ),
+              value: maleSeries[0].quantity
+          ),
+          BubbleNode.leaf(
+              options: BubbleOptions(
+                  color: Colors.purple,
+                  child: Text(maleSeries[1].disability,
+                    textAlign: TextAlign.center,
+                  ),
+              ),
+              value: maleSeries[1].quantity
+          ),
+          BubbleNode.leaf(
+              options: BubbleOptions(
+                  color: Colors.blue,
+                  child: Text(maleSeries[2].disability,
+                    textAlign: TextAlign.center,
+                  ),
+              ),
+              value: maleSeries[2].quantity
+          ),
+          BubbleNode.leaf(
+              options: BubbleOptions(
+                  color: Colors.teal,
+                  child: Text(maleSeries[3].disability,
+                    textAlign: TextAlign.center,
+                  ),
+              ),
+              value: maleSeries[3].quantity
+          ),
+          BubbleNode.leaf(
+              options: BubbleOptions(
+                  color: Colors.brown,
+                  child:Text(maleSeries[4].disability,
+                    textAlign: TextAlign.center,
+                  ),
+              ),
+              value: maleSeries[4].quantity
+          ),
+          BubbleNode.leaf(
+              options: BubbleOptions(
+                  color: Colors.red,
+                  child: Text(maleSeries[5].disability,
+                    textAlign: TextAlign.center,
+                  ),
+              ),
+              value: maleSeries[5].quantity
+          ),
+          BubbleNode.leaf(
+              options: BubbleOptions(
+                  color: Colors.blueGrey,
+                  child: Text(maleSeries[6].disability,
+                    textAlign: TextAlign.center,
+                  ),
+              ),
+              value: maleSeries[6].quantity
+          ),
+
+        ]);
+    return bubbleChart;
   }
 }
 
-/// Sample linear data type.
-class LinearSales {
-  final int year;
-  final double revenueShare;
-  final double radius;
+class DisabilityByAge {
+  final String disability;
+  final int quantity;
 
-  LinearSales(this.year, this.revenueShare, this.radius);
+  DisabilityByAge(this.disability, this.quantity);
 }
