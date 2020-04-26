@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mobile_visualization_project/pie.dart';
+import 'package:mobile_visualization_project/bubble.dart';
 
 class HomePage extends StatefulWidget {
   final Widget child;
