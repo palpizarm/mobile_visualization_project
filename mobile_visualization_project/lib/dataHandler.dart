@@ -1,5 +1,3 @@
-
-
 import 'dart:core';
 
 class DataHandler {
@@ -35,5 +33,4 @@ class DataHandler {
       "De 75 a 89 años":	[15638,9265,2203,19333,5132,757,2086],
       "De 90 años y más":	[2354,2356,703,3621,1069,181,495]};
   }
-
 }
