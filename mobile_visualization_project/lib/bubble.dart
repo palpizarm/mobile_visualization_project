@@ -1,41 +1,76 @@
-import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
 import 'dataHandler.dart';
 import 'package:bubble_chart/bubble_chart.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class BubbleChart extends StatelessWidget {
-  List<DisabilityByAge> maleSeries;
-  List<DisabilityByAge> femaleSeries;
+  Map<int,List<DisabilityByAge>> gender;
+  String title;
   BubbleNode bubbleChart;
   DataHandler _data;
 
   BubbleChart() {
     bubbleChart = null;
     _data = new DataHandler();
-    maleSeries = [];
-    femaleSeries = [];
     _loadData();
-    _createData();
+    _createData(2);
   }
 
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Text(
-          'Cantidad de personas con discapacidad por genero',
-        ),
-        Expanded(
-          child: BubbleChartLayout(
-            root: bubbleChart,
-          ),
+    return Center(
+        child: Column(
+          children: <Widget>[
+            Text(
+              'Seleccione el genero',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              children: <Widget>[
+                IconButton(
+                  icon: new Icon(FontAwesomeIcons.male),
+                  tooltip: 'Tipo de discapacidad segun hombres',
+                  onPressed: () {
+                    _createData((1));
+                  },
+                ),
+                IconButton(
+                  icon: new Icon(FontAwesomeIcons.female),
+                  tooltip: 'Tipo de discapacidad segun mujeres',
+                  onPressed: (){
+                    _createData((2));
+                  },
+                ),
+              ],
+            ),
+            Text(
+              title,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+              ),
+            ),
+            Expanded(
+              child: BubbleChartLayout(
+                root: bubbleChart,
+              ),
+            )
+          ],
         )
-      ],
     );
   }
 
   void _loadData() {
+    List<DisabilityByAge> maleSeries = [];
+    List<DisabilityByAge> femaleSeries = [];
     int maleQuantity = 0;
     int femaleQuantity = 0;
     for (int index = 0; index < _data.disabilities.length; index++) {
@@ -49,79 +84,81 @@ class BubbleChart extends StatelessWidget {
           new DisabilityByAge(_data.disabilities[index], femaleQuantity));
       maleQuantity = femaleQuantity = 0;
     }
+    gender = {1:maleSeries,2:femaleSeries};
   }
 
 
-  _createData() {
+  _createData(int genderType) {
+    genderType == 1 ? title = 'Hombres con discapacidad segun tipo de discapcidad' : title = 'Mujeres con discapacidad segun tipo de discapcidad';
+    List<DisabilityByAge> seriesData = gender[genderType];
     bubbleChart = BubbleNode.node(
         children: [
           BubbleNode.leaf(
               options: BubbleOptions(
                   color: Colors.lime,
                   child: Text(
-                    maleSeries[0].disability,
+                    seriesData[0].disability,
                     textAlign: TextAlign.center,
                   ),
               ),
-              value: maleSeries[0].quantity
+              value: seriesData[0].quantity
           ),
           BubbleNode.leaf(
               options: BubbleOptions(
                   color: Colors.purple,
-                  child: Text(maleSeries[1].disability,
+                  child: Text(seriesData[1].disability,
                     textAlign: TextAlign.center,
                   ),
               ),
-              value: maleSeries[1].quantity
+              value: seriesData[1].quantity
           ),
           BubbleNode.leaf(
               options: BubbleOptions(
                   color: Colors.blue,
-                  child: Text(maleSeries[2].disability,
+                  child: Text(seriesData[2].disability,
                     textAlign: TextAlign.center,
                   ),
               ),
-              value: maleSeries[2].quantity
+              value: seriesData[2].quantity
           ),
           BubbleNode.leaf(
               options: BubbleOptions(
                   color: Colors.teal,
-                  child: Text(maleSeries[3].disability,
+                  child: Text(seriesData[3].disability,
                     textAlign: TextAlign.center,
                   ),
               ),
-              value: maleSeries[3].quantity
+              value: seriesData[3].quantity
           ),
           BubbleNode.leaf(
               options: BubbleOptions(
                   color: Colors.brown,
-                  child:Text(maleSeries[4].disability,
+                  child:Text(seriesData[4].disability,
                     textAlign: TextAlign.center,
                   ),
               ),
-              value: maleSeries[4].quantity
+              value: seriesData[4].quantity
           ),
           BubbleNode.leaf(
               options: BubbleOptions(
                   color: Colors.red,
-                  child: Text(maleSeries[5].disability,
+                  child: Text(seriesData[5].disability,
                     textAlign: TextAlign.center,
                   ),
               ),
-              value: maleSeries[5].quantity
+              value: seriesData[5].quantity
           ),
           BubbleNode.leaf(
               options: BubbleOptions(
                   color: Colors.blueGrey,
-                  child: Text(maleSeries[6].disability,
+                  child: Text(seriesData[6].disability,
                     textAlign: TextAlign.center,
                   ),
               ),
-              value: maleSeries[6].quantity
+              value: seriesData[6].quantity
           ),
 
         ]);
-    return bubbleChart;
   }
 }
 
