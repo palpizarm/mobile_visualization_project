@@ -13,23 +13,42 @@ class BarChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Directionality(
-        textDirection: TextDirection.rtl,
-        child: new charts.BarChart(
-          seriesList,
-          animate: true,
-          barGroupingType: charts.BarGroupingType.groupedStacked,
-          domainAxis: new charts.OrdinalAxisSpec(
-            renderSpec: new charts.SmallTickRendererSpec(labelRotation: 60),
+    return Center(
+      child: Column(
+        children: <Widget>[
+          Text(
+            'Población con dicapacidad por edad segun tipo de discapacidad',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            ),
           ),
-          behaviors: [
-            new charts.SeriesLegend(
-              position: charts.BehaviorPosition.start,
-              defaultHiddenSeries: [_dataHandler.disabilities[0].substring(0,8), _dataHandler.disabilities[1], _dataHandler.disabilities[2],
-                _dataHandler.disabilities[3].substring(5), _dataHandler.disabilities[4].substring(5), _dataHandler.disabilities[5].substring(4),],
-            )
-          ],
-        ));
+          Expanded(
+            child: new Directionality(
+              textDirection: TextDirection.rtl,
+              child: new charts.BarChart(
+                seriesList,
+                animate: true,
+                barGroupingType: charts.BarGroupingType.groupedStacked,
+                domainAxis: new charts.OrdinalAxisSpec(
+                  renderSpec: new charts.SmallTickRendererSpec(
+                      labelRotation: 60),
+                ),
+                behaviors: [
+                  new charts.SeriesLegend(
+                    position: charts.BehaviorPosition.start,
+                    defaultHiddenSeries: [
+                      _dataHandler.disabilities[0].substring(0, 8),
+                      _dataHandler.disabilities[1],
+                      _dataHandler.disabilities[2],
+                      _dataHandler.disabilities[3].substring(5),
+                      _dataHandler.disabilities[4].substring(5),
+                      _dataHandler.disabilities[5].substring(4),
+                    ],)
+                ],),),
+          ),],),
+    );
   }
 
   /// Create series list with multiple series
