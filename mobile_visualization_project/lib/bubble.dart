@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'dataHandler.dart';
 import 'package:bubble_chart/bubble_chart.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mobile_visualization_project/homepage.dart';
+class BubbleChart extends StatefulWidget {
 
-class BubbleChart extends StatelessWidget {
+  @override
+  State<StatefulWidget> createState() => new BubbleChartState();
+}
+
+class BubbleChartState extends State<BubbleChart> {
   Map<int,List<DisabilityByAge>> gender;
-  String title;
+  String title = "";
   BubbleNode bubbleChart;
   DataHandler _data;
 
-  BubbleChart() {
+  BubbleChartState() {
     bubbleChart = null;
     _data = new DataHandler();
     _loadData();
@@ -56,14 +62,18 @@ class BubbleChart extends StatelessWidget {
                   icon: new Icon(FontAwesomeIcons.male),
                   tooltip: 'Tipo de discapacidad segun hombres',
                   onPressed: () {
-                    _createData((1));
+                    setState(() {
+                      _createData((1));
+                    });
                   },
                 ),
                 IconButton(
                   icon: new Icon(FontAwesomeIcons.female),
                   tooltip: 'Tipo de discapacidad segun mujeres',
                   onPressed: () {
-                    _createData((2));
+                    setState(() {
+                      _createData((2));
+                    });
                   },
                 ),
               ],
@@ -109,7 +119,7 @@ class BubbleChart extends StatelessWidget {
   _createData(int genderType) {
     genderType == 1 ? title = 'Hombres con discapacidad segun tipo de discapcidad' : title = 'Mujeres con discapacidad segun tipo de discapcidad';
     List<DisabilityByAge> seriesData = gender[genderType];
-    bubbleChart = BubbleNode.node(
+    bubbleChart = new BubbleNode.node(
         children: [
           BubbleNode.leaf(
               options: BubbleOptions(

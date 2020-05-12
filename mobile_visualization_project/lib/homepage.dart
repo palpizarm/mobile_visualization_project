@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
               Padding(
                 padding: EdgeInsets.all(8.0),
                 child: RaisedButton(
-                  elevation: 14.0,
+                  elevation: 5.0,
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(
@@ -74,7 +74,7 @@ class _HomePageState extends State<HomePage> {
               Padding(
                 padding: EdgeInsets.all(8.0),
                 child: RaisedButton(
-                  elevation: 14.0,
+                  elevation: 10.0,
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) =>
@@ -102,7 +102,7 @@ class _HomePageState extends State<HomePage> {
               Padding(
                 padding: EdgeInsets.all(8.0),
                 child: RaisedButton(
-                  elevation: 14.0,
+                  elevation: 10.0,
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) =>
