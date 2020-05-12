@@ -23,7 +23,7 @@ class BubbleChart extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Color(0xff0b906c),
-          leading: IconButton(icon: Icon(Icons.arrow_back_ios),
+          leading: IconButton(icon: Icon(Icons.arrow_back),
             tooltip: 'Menu',
             onPressed: () {
               Navigator.push(context,
