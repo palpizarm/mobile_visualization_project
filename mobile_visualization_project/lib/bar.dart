@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
-import 'dataHandler.dart';
+import 'package:mobile_visualization_project/dataHandler.dart';
+import 'package:mobile_visualization_project/homepage.dart';
 
 class BarChart extends StatelessWidget {
   List<charts.Series> seriesList;
@@ -13,11 +14,28 @@ class BarChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xff0b906c),
+        leading: IconButton(icon: Icon(Icons.arrow_back_ios),
+          tooltip: 'Menu',
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => HomePage()));
+          },),
+        title:
+        Text(
+          'Chart View',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 24,
+          ),
+        ),
+      ),
+      body: Column(
         children: <Widget>[
           Text(
-            'Población con dicapacidad por edad segun tipo de discapacidad',
+            'Población con dicapacidad por edad segun tipo de discapacidad\n',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontWeight: FontWeight.bold,
