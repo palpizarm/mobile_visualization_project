@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:mobile_visualization_project/dataHandler.dart';
+import 'package:mobile_visualization_project/homepage.dart';
 
 class PieChart extends StatelessWidget {
   DataHandler _dataHandler;
@@ -13,8 +14,25 @@ class PieChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xff0b906c),
+        leading: IconButton(icon: Icon(Icons.arrow_back),
+          tooltip: 'Menu',
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => HomePage()));
+          },),
+        title:
+        Text(
+          'Chart View',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 24,
+          ),
+        ),
+      ),
+      body: Column(
         children: <Widget>[
           Text(
             'Total de personas con discapacidad segun tipo discapacidad',
