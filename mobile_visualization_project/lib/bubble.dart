@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dataHandler.dart';
 import 'package:bubble_chart/bubble_chart.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mobile_visualization_project/homepage.dart';
 
 class BubbleChart extends StatelessWidget {
   Map<int,List<DisabilityByAge>> gender;
@@ -19,8 +20,25 @@ class BubbleChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: Column(
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Color(0xff0b906c),
+          leading: IconButton(icon: Icon(Icons.arrow_back_ios),
+            tooltip: 'Menu',
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => HomePage()));
+            },),
+          title:
+          Text(
+            'Chart View',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 24,
+            ),
+          ),
+        ),
+        body: Column(
           children: <Widget>[
             Text(
               'Seleccione el genero',
@@ -44,7 +62,7 @@ class BubbleChart extends StatelessWidget {
                 IconButton(
                   icon: new Icon(FontAwesomeIcons.female),
                   tooltip: 'Tipo de discapacidad segun mujeres',
-                  onPressed: (){
+                  onPressed: () {
                     _createData((2));
                   },
                 ),
