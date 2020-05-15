@@ -30,14 +30,13 @@ class BubbleChartState extends State<BubbleChart> {
         appBar: AppBar(
           backgroundColor: Color(0xff0b906c),
           leading: IconButton(icon: Icon(Icons.arrow_back),
-            tooltip: 'Menu',
+            tooltip: 'Volver a menu',
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => HomePage()));
+              Navigator.pop(context);
             },),
           title:
           Text(
-            'Chart View',
+            'Censo 2011 INEC',
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 24,
@@ -87,12 +86,24 @@ class BubbleChartState extends State<BubbleChart> {
               ),
             ),
             Expanded(
-              child: BubbleChartLayout(
-                root: bubbleChart,
+              child: Center(
+                child: BubbleChartLayout(
+                  root: bubbleChart,
+                ),
               ),
-            )
+            ),
+            Row(
+                mainAxisSize: MainAxisSize.max,
+                children: <Widget>[
+                  IconButton(
+                    icon: new Icon(FontAwesomeIcons.info),
+                    color: Colors.grey,
+                  ),
+                  Text("Presione la burbuja para obtener mas informacion")
+                ],
+            ),
           ],
-        )
+        ),
     );
   }
 
@@ -128,6 +139,63 @@ class BubbleChartState extends State<BubbleChart> {
                     seriesData[0].disability,
                     textAlign: TextAlign.center,
                   ),
+                onTap: (){
+                  showGeneralDialog(
+                    barrierLabel: "info",
+                    barrierDismissible: true,
+                    barrierColor: Colors.black.withOpacity(0.7),
+                    transitionDuration: Duration(milliseconds: 300),
+                    context: context,
+                    pageBuilder: (_, __, ___) {
+                      return Align(
+                        alignment: Alignment.center,
+                        child: Container(
+                          height: 200,
+                          child: SizedBox.expand(child: Align(
+                              alignment: Alignment.topCenter,
+                              child: Column(
+                                children: <Widget>[
+                                  Text(
+                                    title + "\n\n\n",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      decoration: TextDecoration.none,
+                                      color: Colors.black,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Text(
+                                    seriesData[0].disability + ":" + seriesData[0].quantity.toString() ,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      decoration: TextDecoration.none,
+                                      color: Colors.black,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                  )
+                                ],
+                              )
+                          ),
+                          ),
+                          margin: EdgeInsets.only(bottom: 25, left: 10, right: 10),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      );
+                    },
+                    transitionBuilder: (_, anim, __, child) {
+                      return SlideTransition(
+                        position: Tween(begin: Offset(0, 1), end: Offset(0, 0))
+                            .animate(anim),
+                        child: child,
+                      );
+                    },
+                  );
+                },
               ),
               value: seriesData[0].quantity
           ),
@@ -137,6 +205,63 @@ class BubbleChartState extends State<BubbleChart> {
                   child: Text(seriesData[1].disability,
                     textAlign: TextAlign.center,
                   ),
+                onTap: (){
+                  showGeneralDialog(
+                    barrierLabel: "info",
+                    barrierDismissible: true,
+                    barrierColor: Colors.black.withOpacity(0.7),
+                    transitionDuration: Duration(milliseconds: 300),
+                    context: context,
+                    pageBuilder: (_, __, ___) {
+                      return Align(
+                        alignment: Alignment.center,
+                        child: Container(
+                          height: 200,
+                          child: SizedBox.expand(child: Align(
+                              alignment: Alignment.topCenter,
+                              child: Column(
+                                children: <Widget>[
+                                  Text(
+                                    title + "\n\n\n",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      decoration: TextDecoration.none,
+                                      color: Colors.black,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Text(
+                                    seriesData[1].disability + ":" + seriesData[1].quantity.toString() ,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      decoration: TextDecoration.none,
+                                      color: Colors.black,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                  )
+                                ],
+                              )
+                          ),
+                          ),
+                          margin: EdgeInsets.only(bottom: 25, left: 10, right: 10),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      );
+                    },
+                    transitionBuilder: (_, anim, __, child) {
+                      return SlideTransition(
+                        position: Tween(begin: Offset(0, 1), end: Offset(0, 0))
+                            .animate(anim),
+                        child: child,
+                      );
+                    },
+                  );
+                },
               ),
               value: seriesData[1].quantity
           ),
@@ -146,6 +271,63 @@ class BubbleChartState extends State<BubbleChart> {
                   child: Text(seriesData[2].disability,
                     textAlign: TextAlign.center,
                   ),
+                onTap: (){
+                  showGeneralDialog(
+                    barrierLabel: "info",
+                    barrierDismissible: true,
+                    barrierColor: Colors.black.withOpacity(0.7),
+                    transitionDuration: Duration(milliseconds: 300),
+                    context: context,
+                    pageBuilder: (_, __, ___) {
+                      return Align(
+                        alignment: Alignment.center,
+                        child: Container(
+                          height: 200,
+                          child: SizedBox.expand(child: Align(
+                              alignment: Alignment.topCenter,
+                              child: Column(
+                                children: <Widget>[
+                                  Text(
+                                    title + "\n\n\n",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      decoration: TextDecoration.none,
+                                      color: Colors.black,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Text(
+                                    seriesData[2].disability + ":" + seriesData[2].quantity.toString() ,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      decoration: TextDecoration.none,
+                                      color: Colors.black,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                  )
+                                ],
+                              )
+                          ),
+                          ),
+                          margin: EdgeInsets.only(bottom: 25, left: 10, right: 10),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      );
+                    },
+                    transitionBuilder: (_, anim, __, child) {
+                      return SlideTransition(
+                        position: Tween(begin: Offset(0, 1), end: Offset(0, 0))
+                            .animate(anim),
+                        child: child,
+                      );
+                    },
+                  );
+                },
               ),
               value: seriesData[2].quantity
           ),
@@ -155,6 +337,63 @@ class BubbleChartState extends State<BubbleChart> {
                   child: Text(seriesData[3].disability,
                     textAlign: TextAlign.center,
                   ),
+                onTap: (){
+                  showGeneralDialog(
+                    barrierLabel: "info",
+                    barrierDismissible: true,
+                    barrierColor: Colors.black.withOpacity(0.7),
+                    transitionDuration: Duration(milliseconds: 300),
+                    context: context,
+                    pageBuilder: (_, __, ___) {
+                      return Align(
+                        alignment: Alignment.center,
+                        child: Container(
+                          height: 200,
+                          child: SizedBox.expand(child: Align(
+                              alignment: Alignment.topCenter,
+                              child: Column(
+                                children: <Widget>[
+                                  Text(
+                                    title + "\n\n\n",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      decoration: TextDecoration.none,
+                                      color: Colors.black,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Text(
+                                    seriesData[3].disability + ":" + seriesData[3].quantity.toString() ,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      decoration: TextDecoration.none,
+                                      color: Colors.black,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                  )
+                                ],
+                              )
+                          ),
+                          ),
+                          margin: EdgeInsets.only(bottom: 25, left: 10, right: 10),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      );
+                    },
+                    transitionBuilder: (_, anim, __, child) {
+                      return SlideTransition(
+                        position: Tween(begin: Offset(0, 1), end: Offset(0, 0))
+                            .animate(anim),
+                        child: child,
+                      );
+                    },
+                  );
+                },
               ),
               value: seriesData[3].quantity
           ),
@@ -164,6 +403,63 @@ class BubbleChartState extends State<BubbleChart> {
                   child:Text(seriesData[4].disability,
                     textAlign: TextAlign.center,
                   ),
+                onTap: (){
+                  showGeneralDialog(
+                    barrierLabel: "info",
+                    barrierDismissible: true,
+                    barrierColor: Colors.black.withOpacity(0.7),
+                    transitionDuration: Duration(milliseconds: 300),
+                    context: context,
+                    pageBuilder: (_, __, ___) {
+                      return Align(
+                        alignment: Alignment.center,
+                        child: Container(
+                          height: 200,
+                          child: SizedBox.expand(child: Align(
+                              alignment: Alignment.topCenter,
+                              child: Column(
+                                children: <Widget>[
+                                  Text(
+                                    title + "\n\n\n",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      decoration: TextDecoration.none,
+                                      color: Colors.black,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Text(
+                                    seriesData[4].disability + ":" + seriesData[4].quantity.toString() ,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      decoration: TextDecoration.none,
+                                      color: Colors.black,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                  )
+                                ],
+                              )
+                          ),
+                          ),
+                          margin: EdgeInsets.only(bottom: 25, left: 10, right: 10),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      );
+                    },
+                    transitionBuilder: (_, anim, __, child) {
+                      return SlideTransition(
+                        position: Tween(begin: Offset(0, 1), end: Offset(0, 0))
+                            .animate(anim),
+                        child: child,
+                      );
+                    },
+                  );
+                },
               ),
               value: seriesData[4].quantity
           ),
@@ -173,6 +469,63 @@ class BubbleChartState extends State<BubbleChart> {
                   child: Text(seriesData[5].disability,
                     textAlign: TextAlign.center,
                   ),
+                onTap: (){
+                  showGeneralDialog(
+                    barrierLabel: "info",
+                    barrierDismissible: true,
+                    barrierColor: Colors.black.withOpacity(0.7),
+                    transitionDuration: Duration(milliseconds: 300),
+                    context: context,
+                    pageBuilder: (_, __, ___) {
+                      return Align(
+                        alignment: Alignment.center,
+                        child: Container(
+                          height: 200,
+                          child: SizedBox.expand(child: Align(
+                              alignment: Alignment.topCenter,
+                              child: Column(
+                                children: <Widget>[
+                                  Text(
+                                    title + "\n\n\n",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      decoration: TextDecoration.none,
+                                      color: Colors.black,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Text(
+                                    seriesData[5].disability + ":" + seriesData[5].quantity.toString() ,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      decoration: TextDecoration.none,
+                                      color: Colors.black,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                  )
+                                ],
+                              )
+                          ),
+                          ),
+                          margin: EdgeInsets.only(bottom: 25, left: 10, right: 10),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      );
+                    },
+                    transitionBuilder: (_, anim, __, child) {
+                      return SlideTransition(
+                        position: Tween(begin: Offset(0, 1), end: Offset(0, 0))
+                            .animate(anim),
+                        child: child,
+                      );
+                    },
+                  );
+                },
               ),
               value: seriesData[5].quantity
           ),
@@ -182,6 +535,63 @@ class BubbleChartState extends State<BubbleChart> {
                   child: Text(seriesData[6].disability,
                     textAlign: TextAlign.center,
                   ),
+                onTap: (){
+                  showGeneralDialog(
+                    barrierLabel: "info",
+                    barrierDismissible: true,
+                    barrierColor: Colors.black.withOpacity(0.7),
+                    transitionDuration: Duration(milliseconds: 300),
+                    context: context,
+                    pageBuilder: (_, __, ___) {
+                      return Align(
+                        alignment: Alignment.center,
+                        child: Container(
+                          height: 200,
+                          child: SizedBox.expand(child: Align(
+                              alignment: Alignment.topCenter,
+                              child: Column(
+                                children: <Widget>[
+                                  Text(
+                                    title + "\n\n\n",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      decoration: TextDecoration.none,
+                                      color: Colors.black,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Text(
+                                    seriesData[6].disability + ":" + seriesData[6].quantity.toString() ,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      decoration: TextDecoration.none,
+                                      color: Colors.black,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                  )
+                                ],
+                              )
+                          ),
+                          ),
+                          margin: EdgeInsets.only(bottom: 25, left: 10, right: 10),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      );
+                    },
+                    transitionBuilder: (_, anim, __, child) {
+                      return SlideTransition(
+                        position: Tween(begin: Offset(0, 1), end: Offset(0, 0))
+                            .animate(anim),
+                        child: child,
+                      );
+                    },
+                  );
+                },
               ),
               value: seriesData[6].quantity
           ),

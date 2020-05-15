@@ -18,14 +18,13 @@ class BarChart extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Color(0xff0b906c),
         leading: IconButton(icon: Icon(Icons.arrow_back_ios),
-          tooltip: 'Menu',
+          tooltip: 'Volver a menu',
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => HomePage()));
+            Navigator.pop(context);
           },),
         title:
         Text(
-          'Chart View',
+          'CENSO 2011 INEC',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 24,

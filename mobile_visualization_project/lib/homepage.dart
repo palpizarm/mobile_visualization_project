@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: Color(0xff0b906c),
           title:
           Text(
-            'Chart View',
+            'CENSO 2011 INEC',
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 24,
