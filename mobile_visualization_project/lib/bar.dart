@@ -20,8 +20,7 @@ class BarChart extends StatelessWidget {
         leading: IconButton(icon: Icon(Icons.arrow_back_ios),
           tooltip: 'Menu',
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => HomePage()));
+            Navigator.pop(context);
           },),
         title:
         Text(

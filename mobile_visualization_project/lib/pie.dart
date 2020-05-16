@@ -20,8 +20,7 @@ class PieChart extends StatelessWidget {
         leading: IconButton(icon: Icon(Icons.arrow_back),
           tooltip: 'Menu',
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => HomePage()));
+            Navigator.pop(context);
           },),
         title:
         Text(
