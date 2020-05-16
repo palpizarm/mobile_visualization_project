@@ -144,7 +144,7 @@ class BubbleChartState extends State<BubbleChart> {
                     barrierLabel: "info",
                     barrierDismissible: true,
                     barrierColor: Colors.black.withOpacity(0.7),
-                    transitionDuration: Duration(milliseconds: 100),
+                    transitionDuration: Duration(milliseconds: 300),
                     context: context,
                     pageBuilder: (_, __, ___) {
                       return Align(
@@ -210,7 +210,7 @@ class BubbleChartState extends State<BubbleChart> {
                     barrierLabel: "info",
                     barrierDismissible: true,
                     barrierColor: Colors.black.withOpacity(0.7),
-                    transitionDuration: Duration(milliseconds: 100),
+                    transitionDuration: Duration(milliseconds: 300),
                     context: context,
                     pageBuilder: (_, __, ___) {
                       return Align(
@@ -276,7 +276,7 @@ class BubbleChartState extends State<BubbleChart> {
                     barrierLabel: "info",
                     barrierDismissible: true,
                     barrierColor: Colors.black.withOpacity(0.7),
-                    transitionDuration: Duration(milliseconds: 100),
+                    transitionDuration: Duration(milliseconds: 300),
                     context: context,
                     pageBuilder: (_, __, ___) {
                       return Align(
@@ -342,7 +342,7 @@ class BubbleChartState extends State<BubbleChart> {
                     barrierLabel: "info",
                     barrierDismissible: true,
                     barrierColor: Colors.black.withOpacity(0.7),
-                    transitionDuration: Duration(milliseconds: 100),
+                    transitionDuration: Duration(milliseconds: 300),
                     context: context,
                     pageBuilder: (_, __, ___) {
                       return Align(
@@ -408,7 +408,7 @@ class BubbleChartState extends State<BubbleChart> {
                     barrierLabel: "info",
                     barrierDismissible: true,
                     barrierColor: Colors.black.withOpacity(0.7),
-                    transitionDuration: Duration(milliseconds: 100),
+                    transitionDuration: Duration(milliseconds: 300),
                     context: context,
                     pageBuilder: (_, __, ___) {
                       return Align(
@@ -474,7 +474,7 @@ class BubbleChartState extends State<BubbleChart> {
                     barrierLabel: "info",
                     barrierDismissible: true,
                     barrierColor: Colors.black.withOpacity(0.7),
-                    transitionDuration: Duration(milliseconds: 100),
+                    transitionDuration: Duration(milliseconds: 300),
                     context: context,
                     pageBuilder: (_, __, ___) {
                       return Align(
@@ -540,7 +540,7 @@ class BubbleChartState extends State<BubbleChart> {
                     barrierLabel: "info",
                     barrierDismissible: true,
                     barrierColor: Colors.black.withOpacity(0.7),
-                    transitionDuration: Duration(milliseconds: 100),
+                    transitionDuration: Duration(milliseconds: 300),
                     context: context,
                     pageBuilder: (_, __, ___) {
                       return Align(
